@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Smoke test" verbose="2">
+ 	<test name="Smoke test">
+ 		<classes>
+ 			<class name="gov.usd.tests.SPA_261_TC"></class>
+			
+			
+ 		</classes>
+ 	</test>
+ </suite> 

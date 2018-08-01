@@ -1,13 +1,20 @@
 package com.cbt.utilities;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -30,13 +37,11 @@ public class BrowserUtils {
 		}
 		Driver.getDriver().switchTo().window(origin);
 	}
-
-	public static void hover(WebElement element) {
+ 	public static void hover(WebElement element) {
 		Actions actions = new Actions(Driver.getDriver());
 		actions.moveToElement(element).perform();
 	}
-
-	/**
+ 	/**
 	 * return a list of string from a list of elements ignores any element with no
 	 * text
 	 * 
@@ -52,49 +57,40 @@ public class BrowserUtils {
 		}
 		return elemTexts;
 	}
-
-	public static List<String> getElementsText(By locator) {
-
-		List<WebElement> elems = Driver.getDriver().findElements(locator);
+ 	public static List<String> getElementsText(By locator) {
+ 		List<WebElement> elems = Driver.getDriver().findElements(locator);
 		List<String> elemTexts = new ArrayList<>();
-
-		for (WebElement el : elems) {
+ 		for (WebElement el : elems) {
 			if (!el.getText().isEmpty()) {
 				elemTexts.add(el.getText());
 			}
 		}
 		return elemTexts;
 	}
-
-	public static void waitFor(int sec) {
+ 	public static void waitFor(int sec) {
 		try {
 			Thread.sleep(sec * 1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
-
-	public static WebElement waitForVisibility(WebElement element, int timeToWaitInSec) {
+ 	public static WebElement waitForVisibility(WebElement element, int timeToWaitInSec) {
 		WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeToWaitInSec);
 		return wait.until(ExpectedConditions.visibilityOf(element));
 	}
-
-	public static WebElement waitForVisibility(By locator, int timeout) {
+ 	public static WebElement waitForVisibility(By locator, int timeout) {
 		WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeout);
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
-
-	public static WebElement waitForClickablility(WebElement element, int timeout) {
+ 	public static WebElement waitForClickablility(WebElement element, int timeout) {
 		WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeout);
 		return wait.until(ExpectedConditions.elementToBeClickable(element));
 	}
-
-	public static WebElement waitForClickablility(By locator, int timeout) {
+ 	public static WebElement waitForClickablility(By locator, int timeout) {
 		WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeout);
 		return wait.until(ExpectedConditions.elementToBeClickable(locator));
 	}
-
-	public static void waitForPageToLoad(long timeOutInSeconds) {
+ 	public static void waitForPageToLoad(long timeOutInSeconds) {
 		ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver driver) {
 				return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
@@ -109,8 +105,7 @@ public class BrowserUtils {
 					"Timeout waiting for Page Load Request to complete after " + timeOutInSeconds + " seconds");
 		}
 	}
-
-	public static WebElement fluentWait(final WebElement webElement, int timeinsec) {
+ 	public static WebElement fluentWait(final WebElement webElement, int timeinsec) {
 		FluentWait<WebDriver> wait = new FluentWait<WebDriver>(Driver.getDriver())
 				.withTimeout(timeinsec, TimeUnit.SECONDS).pollingEvery(timeinsec, TimeUnit.SECONDS)
 				.ignoring(NoSuchElementException.class);
@@ -121,5 +116,39 @@ public class BrowserUtils {
 		});
 		return element;
 	}
-
+ 	/*
+	 * takes screenshot
+	 * 
+	 * @param name take a name of a test and returns a path to screenshot takes
+	 */
+	public static String getScreenshot(String name) throws IOException {
+		// name the screenshot with the current date time to avoid duplicate name
+		String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+ 		// TakesScreenshot ---> interface from selenium which takes screenshots
+		TakesScreenshot ts = (TakesScreenshot) Driver.getDriver();
+		File source = ts.getScreenshotAs(OutputType.FILE);
+		// full path to the screenshot location
+		String target = System.getProperty("user.dir") + "/test-output/Screenshots/" + name + date + ".png";
+ 		File finalDestination = new File(target);
+ 		// save the screenshot to the path given
+		FileUtils.copyFile(source, finalDestination);
+		return target;
+	}
+ 	/*
+	 * This method will check is your element is clickble, return true or false
+	 */
+	public static boolean isClickable(WebElement webElement)      
+	{
+	try
+	{
+	   WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 5);
+	   wait.until(ExpectedConditions.elementToBeClickable(webElement));
+	   return true;
+	}
+	catch (Exception e)
+	{
+	  return false;
+	}
+	
+	}
 }
