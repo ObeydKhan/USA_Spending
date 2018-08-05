@@ -30,7 +30,7 @@ public abstract class TestBase {
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
 		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
-		driver.manage().window().fullscreen();
+		driver.manage().window().maximize();
 	}
 
 	@BeforeTest
@@ -70,6 +70,6 @@ public abstract class TestBase {
 
 	@AfterClass
 	public void setUpClose() {
-		Driver.closeDriver();
+//		Driver.closeDriver();
 	}
 }

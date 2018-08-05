@@ -53,13 +53,29 @@ public class SPA_573_TC extends TestBase {
 		List<String> actualStatesAssending = new ArrayList<>();
 		List<String> expectedStatesAssending = new ArrayList<>();
 		psp.states.stream().forEach(x -> actualStatesAssending.add(x.getText().trim()));
+
+		for (int i = 0; i <= 4; i++) {
+			actualStatesAssending.remove(actualStatesAssending.size() - 1);
+		}
+
 		expectedStatesAssending.addAll(actualStatesAssending);
 		Collections.sort(expectedStatesAssending);
-		Assert.assertEquals(expectedStatesAssending, actualStatesAssending);
-		BrowserUtils.waitFor(1);
+		Assert.assertEquals(actualStatesAssending, expectedStatesAssending);
+		
 		psp.clickToGetDecendingStatesOrder.click();
+		BrowserUtils.waitFor(1);
+		
+		
+		psp = new ProfilesStatePage();
+		List actualStatesAssending2 = new ArrayList<String>();
+		psp.states.stream().forEach(x -> actualStatesAssending2.add(x.getText().trim()));
+
+		for (int i = 0; i <= 4; i++) {
+			actualStatesAssending2.remove(0);
+		}
+		
 		Collections.reverse(expectedStatesAssending);
-		Assert.assertEquals(expectedStatesAssending, actualStatesAssending);
+		Assert.assertEquals(actualStatesAssending2 , expectedStatesAssending);
 		extentLogger.pass("Verification of  assending and decending order of states are pass");
 	}
 }

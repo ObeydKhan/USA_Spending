@@ -2,7 +2,7 @@
 <suite name="Smoke test" verbose="2">
  	<test name="Smoke test">
  		<classes>
- 			<class name="gov.usd.tests.SPA_261_TC"></class>
+ 			<class name="com.cbt.tests.SPA_261_TC"></class>
 			
 			
  		</classes>

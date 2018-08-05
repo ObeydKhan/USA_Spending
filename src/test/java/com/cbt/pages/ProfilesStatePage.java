@@ -39,8 +39,8 @@ public class ProfilesStatePage {
 	@FindBy(xpath = "//tr[@class='state-list__body-row']/td[1]")
 	public List<WebElement> states;
 	
-	@FindBy(xpath = "/*[contains(text(),'Sort table by descending state')]/..")
-	public WebElement clickToGetDecendingStatesOrder;
+	@FindBy(xpath = "//*[contains(text(),'Sort table by descending state')]/..")
+	public WebElement clickToGetDecendingStatesOrder; ////button[2]
 
 	@FindBy(xpath = "//*[@id='main-content']/div/div[2]/div[2]")
 	public WebElement LeftCornerResult;

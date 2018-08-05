@@ -2,7 +2,7 @@
  <suite name="Regression test" verbose="2">
     <test name="Automated Regression Test">
        <packages>
-           <package name="gov.usd.tests"></package>
+           <package name="com.cbt.tests"></package>
        </packages>
    </test>
  </suite> 
