@@ -22,36 +22,36 @@ public class SPA_571_TC extends TestBase {
 
 	@Test(priority = 1, description = "Title verification")
 	public void verificationTitle() {
-		extentLogger = report.createTest("Title verification");
+//		extentLogger = report.createTest("Title verification");
 		driver.get(ConfigurationReader.getProperty("urlUSA"));
 		String currentTitle = ConfigurationReader.getProperty("title");
 		String actualTitle = driver.getTitle();
 		Assert.assertEquals(currentTitle, actualTitle, "Veriffying current title");
-		extentLogger.pass("Verified title of the Home Page");
+//		extentLogger.pass("Verified title of the Home Page");
 	}
 
 	@Test(priority = 2, description = "Profiles is clickble")
 	public void hoverOver() throws InterruptedException {
-		extentLogger = report.createTest("Profiles is clickble");
+//		extentLogger = report.createTest("Profiles is clickble");
 		Actions action = new Actions(driver);
 		action.moveToElement(hp.profileMenu).perform();
 		Assert.assertTrue(hp.profilesFederalAccountsOption.isDisplayed());
 		hp.profilesFederalAccountsOption.click();
-		extentLogger.pass("Verified Profile of the Home Page");
+//		extentLogger.pass("Verified Profile of the Home Page");
 	}
 
 	@Test(priority = 3, description = "Verifying federal url")
 	public void statesUrl() {
-		extentLogger = report.createTest("Verifying federal url");
+//		extentLogger = report.createTest("Verifying federal url");
 		String expectedUrl = ConfigurationReader.getProperty("urlFederal");
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(expectedUrl, actualUrl);
-		extentLogger.pass("Verified federal url of the Federal Page");
+//		extentLogger.pass("Verified federal url of the Federal Page");
 	}
 
 	@Test(priority = 4, description = "Check assending and decending order")
 	public void sortBudgetaryResources() {
-		extentLogger = report.createTest("Check assending and decending order");
+//		extentLogger = report.createTest("Check assending and decending order");
 		BrowserUtils.waitFor(4);
 		fap.clickToGetAssendingOrder.click();
 		BrowserUtils.waitFor(1);
@@ -62,7 +62,7 @@ public class SPA_571_TC extends TestBase {
 		// System.out.println(expectedFederalBudgetaryResourcesAssending);
 		Collections.sort(expectedFederalBudgetaryResourcesAssending);
 		Assert.assertEquals(expectedFederalBudgetaryResourcesAssending, actualFederalBudgetaryResources);
-		extentLogger.pass("Verified scending order");
+//		extentLogger.pass("Verified scending order");
 		fap.clickToGetDecendingOrder.click();
 		BrowserUtils.waitFor(1);
 		List<Double> actualFederalBudgetaryResources1 = fap.convertingToDouble();
@@ -73,6 +73,6 @@ public class SPA_571_TC extends TestBase {
 		// System.out.println(expectedFederalBudgetaryResourcesDescending);
 		// System.out.println(actualFederalBudgetaryResources1);
 		Assert.assertEquals(expectedFederalBudgetaryResourcesDescending, actualFederalBudgetaryResources1);
-		extentLogger.pass("Verified descending order");
+//		extentLogger.pass("Verified descending order");
 	}
 }

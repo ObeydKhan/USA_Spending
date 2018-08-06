@@ -33,43 +33,44 @@ public abstract class TestBase {
 		driver.manage().window().maximize();
 	}
 
-	@BeforeTest
+	@BeforeTest(enabled=true)
 	public void setUpTest() {
-		report = new ExtentReports();
-		String filePath = System.getProperty("user.dir") + "/test-output/report.html";
-		htmlReporter = new ExtentHtmlReporter(filePath);
-		report.attachReporter(htmlReporter);
-		report.setSystemInfo("ENV", "staging");
-		report.setSystemInfo("browser", ConfigurationReader.getProperty("browser"));
-		report.setSystemInfo("OS", System.getProperty("os.name"));
-		htmlReporter.config().setReportName("Web Orders Automated Test Reports");
+//		report = new ExtentReports();
+//		String filePath = System.getProperty("user.dir") + "/test-output/report.html";
+//		htmlReporter = new ExtentHtmlReporter(filePath);
+//		report.attachReporter(htmlReporter);
+//		report.setSystemInfo("ENV", "staging");
+//		report.setSystemInfo("browser", ConfigurationReader.getProperty("browser"));
+//		report.setSystemInfo("OS", System.getProperty("os.name"));
+//		htmlReporter.config().setReportName("Web Orders Automated Test Reports");
+	
 	}
 
 	@AfterMethod
 	public void tearDown(ITestResult result) throws IOException {
-		// checking if the test method failed
-		if (result.getStatus() == ITestResult.FAILURE) {
-			// get screenshot using the utility method and save the location of the
-			// screenshot
-			String screenshotLocation = BrowserUtils.getScreenshot(result.getName());
-			// capture the name of test method
-			extentLogger.fail(result.getName());
-			// add the screenshot to the report
-			extentLogger.addScreenCaptureFromPath(screenshotLocation);
-			// capture the exception thrown
-			extentLogger.fail(result.getThrowable());
-		} else if (result.getStatus() == ITestResult.SKIP) {
-			extentLogger.skip("Test Case Skipped is " + result.getName());
-		}
+//		// checking if the test method failed
+//		if (result.getStatus() == ITestResult.FAILURE) {
+//			// get screenshot using the utility method and save the location of the
+//			// screenshot
+//			String screenshotLocation = BrowserUtils.getScreenshot(result.getName());
+//			// capture the name of test method
+//			extentLogger.fail(result.getName());
+//			// add the screenshot to the report
+//			extentLogger.addScreenCaptureFromPath(screenshotLocation);
+//			// capture the exception thrown
+//			extentLogger.fail(result.getThrowable());
+//		} else if (result.getStatus() == ITestResult.SKIP) {
+//			extentLogger.skip("Test Case Skipped is " + result.getName());
+//		}
 	}
 
 	@AfterTest
 	public void tearDownTest() {
-		report.flush();
+//		report.flush();
 	}
 
 	@AfterClass
 	public void setUpClose() {
-//		Driver.closeDriver();
+		Driver.closeDriver();
 	}
 }

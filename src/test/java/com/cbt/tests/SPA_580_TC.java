@@ -21,34 +21,32 @@ public class SPA_580_TC extends TestBase {
 
 	@Test(priority = 1, description = "Hover over the PROFILE functionality to reach Federal Accounts")
 	public void sortedFunctionality() {
-		extentLogger = report.createTest("Hover over the PROFILE functionality to reach Federal Accounts");
+//		extentLogger = report.createTest("Hover over the PROFILE functionality to reach Federal Accounts");
 		// Navigate to Profile then Federal Accounts and click on the last
 		driver.get(ConfigurationReader.getProperty("urlUSA"));
 		action.moveToElement(hp.profileMenu).build().perform();
 		hp.profilesFederalAccountsOption.click();
-		extentLogger.pass("Navigate to Profile then Federal Accounts and click on the last");
+//		extentLogger.pass("Navigate to Profile then Federal Accounts and click on the last");
 		// Asserting url
 		String currentUrlForFederalAccountProfile = driver.getCurrentUrl();
 		String acctualUrlForFederalAccountProfile = ConfigurationReader.getProperty("urlFederal");
 		Assert.assertEquals(currentUrlForFederalAccountProfile, acctualUrlForFederalAccountProfile);
-		extentLogger.pass("Verify the current url is assert to actual url");
+//		extentLogger.pass("Verify the current url is assert to actual url");
 		// Asserting title
-		extentLogger = report.createTest("Check title in order to verify right page");
+//		extentLogger = report.createTest("Check title in order to verify right page");
 		String actualTitle = ConfigurationReader.getProperty("title");
 		String currentTitle = driver.getTitle();
 		Assert.assertEquals(currentTitle, actualTitle);
-		extentLogger.pass("Verify the current title is assert to actual title on this page");
+//		extentLogger.pass("Verify the current title is assert to actual title on this page");
 		// Checking ascending order
 		List<Integer> actualList = fap.convertingToInteger();
 		List<Integer> expRes = new ArrayList<>();
 		expRes.addAll(actualList);
 		Collections.sort(expRes);
 		fap.descendAccountNumBtn.click();
-		extentLogger = report
-				.createTest("Before comparing ascending and actual >results from Account Number functionality");
+//		extentLogger = report.createTest("Before comparing ascending and actual >results from Account Number functionality");
 		Assert.assertNotEquals(actualList, expRes);
-		extentLogger.pass(
-				"After comparing ascending and actual results from Account Number functionality and having result");
+//		extentLogger.pass("After comparing ascending and actual results from Account Number functionality and having result");
 		// //Checking descending order
 		// extentLogger = report.createTest("Before comparing descending and actual
 		// >results from Account Number functionality");

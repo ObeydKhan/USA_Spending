@@ -20,36 +20,36 @@ public class SPA_574_TC extends TestBase {
 
 	@Test(priority = 1, description = "Verifing current title")
 	public void verificationTitle() {
-		extentLogger = report.createTest("Verifing current title");
+//		extentLogger = report.createTest("Verifing current title");
 		driver.get(ConfigurationReader.getProperty("urlUSA"));
 		String currentTitle = ConfigurationReader.getProperty("title");
 		String actualTitle = driver.getTitle();
 		Assert.assertEquals(currentTitle, actualTitle, "Verifing current title");
-		extentLogger.pass("Verification of current title is pass");
+//		extentLogger.pass("Verification of current title is pass");
 	}
 
 	@Test(priority = 2, description = "Profiles is clickble")
 	public void hoverOver() throws InterruptedException {
-		extentLogger = report.createTest("Profiles is clickble");
+//		extentLogger = report.createTest("Profiles is clickble");
 		Actions action = new Actions(driver);
 		action.moveToElement(hp.profileMenu).perform();
 		Assert.assertTrue(hp.profilesStateOption.isDisplayed());
 		hp.profilesStateOption.click();
-		extentLogger.pass("Profiles is clickble is pass");
+//		extentLogger.pass("Profiles is clickble is pass");
 	}
 
 	@Test(priority = 3, description = "Verifing state url")
 	public void statesUrl() {
-		extentLogger = report.createTest("Verifing state url");
+//		extentLogger = report.createTest("Verifing state url");
 		String expectedUrl = ConfigurationReader.getProperty("urlState");
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(expectedUrl, actualUrl);
-		extentLogger.pass("Verification  state url is pass");
+//		extentLogger.pass("Verification  state url is pass");
 	}
 
 	@Test(priority = 4, description = "Verifing assending and decending order of statesAwardedAmount")
 	public void sortStatesAwardedAmount() {
-		extentLogger = report.createTest("Verifing assending and decending order of statesAwardedAmount");
+//		extentLogger = report.createTest("Verifing assending and decending order of statesAwardedAmount");
 		BrowserUtils.waitFor(1);
 		psp.clickToGetAssendingOrder.click();
 		List<Double> actualStatesAwardedAmountAssending = psp.convertingToDouble();
@@ -58,12 +58,12 @@ public class SPA_574_TC extends TestBase {
 		Collections.sort(expectedStatesAwardedAmountAssending);
 		Assert.assertEquals(expectedStatesAwardedAmountAssending, actualStatesAwardedAmountAssending);
 
-		extentLogger.pass("Verification  assending order are pass");
+//		extentLogger.pass("Verification  assending order are pass");
 		psp.clickToGetDecendingOrder.click();
 		List<Double> actualStatesAwardedAmountDecending = psp.convertingToDouble();
 		Collections.reverse(expectedStatesAwardedAmountAssending);
 		System.out.println(expectedStatesAwardedAmountAssending);
 		Assert.assertEquals(expectedStatesAwardedAmountAssending, actualStatesAwardedAmountDecending);
-		extentLogger.pass("Verification decending order are pass");
+//		extentLogger.pass("Verification decending order are pass");
 	}
 }

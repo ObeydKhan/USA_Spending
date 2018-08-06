@@ -17,37 +17,35 @@ public class SPA_570_TC extends TestBase {
 
 	@Test(priority = 1, description = "Hover over the PROFILE functionality to reach Federal Accounts")
 	public void profileFunctionality() {
-		extentLogger = report.createTest("Hover over the PROFILE functionality to reach Federal Accounts");
+//		extentLogger = report.createTest("Hover over the PROFILE functionality to reach Federal Accounts");
 		// Navigate to Profile then Federal Accounts and click on the last
 		driver.get(ConfigurationReader.getProperty("urlUSA"));
 		action.moveToElement(hp.profileMenu).build().perform();
 		hp.profilesFederalAccountsOption.click();
-		extentLogger.pass("Navigate to Profile then Federal Accounts and click on the last");
+//		extentLogger.pass("Navigate to Profile then Federal Accounts and click on the last");
 	}
 
 	@Test(priority = 2, description = "Check url and title in order to verify right page")
 	public void titleAndUrlVerifing() {
-		extentLogger = report.createTest("Check url in order to verify right page");
+//		extentLogger = report.createTest("Check url in order to verify right page");
 		// Asserting url
 		String currentUrlForFederalAccountProfile = driver.getCurrentUrl();
 		String acctualUrlForFederalAccountProfile = ConfigurationReader.getProperty("urlFederal");
 		Assert.assertEquals(currentUrlForFederalAccountProfile, acctualUrlForFederalAccountProfile);
-		extentLogger.pass("Verify the current url is assert to actual url");
+//		extentLogger.pass("Verify the current url is assert to actual url");
 		// Asserting title
-		extentLogger = report.createTest("Check title in order to verify right page");
+//		extentLogger = report.createTest("Check title in order to verify right page");
 		String actualTitle = ConfigurationReader.getProperty("title");
 		String currentTitle = driver.getTitle();
 		Assert.assertEquals(currentTitle, actualTitle);
-		extentLogger.pass("Verify the current title is assert to actual title on this page");
+//		extentLogger.pass("Verify the current title is assert to actual title on this page");
 	}
 
 	@Test(priority = 3, description = "Click on the Managing Agency button, it should sort the results by alphabet or assending order")
 	public void managingAgencyFunctionality() throws InterruptedException {
-		extentLogger = report.createTest(
-				"Click on the Managing Agency button, it should sort the results by alphabet or assending order");
+//		extentLogger = report.createTest("Click on the Managing Agency button, it should sort the results by alphabet or assending order");
 		BrowserUtils.waitFor(1);
 		fap.managingAgency.click();
-		extentLogger.pass(
-				"After clicking on the Managing Agency button, it sorted the results by alphabet or assending order");
+//		extentLogger.pass("After clicking on the Managing Agency button, it sorted the results by alphabet or assending order");
 	}
 }

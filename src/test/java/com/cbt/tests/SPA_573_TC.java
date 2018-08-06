@@ -20,36 +20,36 @@ public class SPA_573_TC extends TestBase {
 
 	@Test(priority = 1, description = "Verifing current title")
 	public void verificationTitle() {
-		extentLogger = report.createTest("Verifing current title");
+//		extentLogger = report.createTest("Verifing current title");
 		driver.get(ConfigurationReader.getProperty("urlUSA"));
 		String currentTitle = ConfigurationReader.getProperty("title");
 		String actualTitle = driver.getTitle();
 		Assert.assertEquals(currentTitle, actualTitle, "Verifing current title");
-		extentLogger.pass("Verification of current title is pass");
+//		extentLogger.pass("Verification of current title is pass");
 	}
 
 	@Test(priority = 2, description = "Profiles is clickble")
 	public void hoverOver() {
-		extentLogger = report.createTest("Profiles is clickble");
+//		extentLogger = report.createTest("Profiles is clickble");
 		Actions action = new Actions(driver);
 		action.moveToElement(hp.profileMenu).perform();
 		Assert.assertTrue(hp.profilesStateOption.isDisplayed());
 		hp.profilesStateOption.click();
-		extentLogger.pass("Profiles is clickble is pass");
+//		extentLogger.pass("Profiles is clickble is pass");
 	}
 
 	@Test(priority = 3, description = "Verifing state url")
 	public void statesUrl() {
-		extentLogger = report.createTest("Verifing state url");
+//		extentLogger = report.createTest("Verifing state url");
 		String expectedUrl = ConfigurationReader.getProperty("urlState");
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(expectedUrl, actualUrl);
-		extentLogger.pass("Verification  state url is pass");
+//		extentLogger.pass("Verification  state url is pass");
 	}
 
 	@Test(priority = 4, description = "Verifing assending and decending order of states")
 	public void sortStates() {
-		extentLogger = report.createTest("Verifing assending and decending order of states");
+//		extentLogger = report.createTest("Verifing assending and decending order of states");
 		List<String> actualStatesAssending = new ArrayList<>();
 		List<String> expectedStatesAssending = new ArrayList<>();
 		psp.states.stream().forEach(x -> actualStatesAssending.add(x.getText().trim()));
@@ -76,6 +76,6 @@ public class SPA_573_TC extends TestBase {
 		
 		Collections.reverse(expectedStatesAssending);
 		Assert.assertEquals(actualStatesAssending2 , expectedStatesAssending);
-		extentLogger.pass("Verification of  assending and decending order of states are pass");
+//		extentLogger.pass("Verification of  assending and decending order of states are pass");
 	}
 }
